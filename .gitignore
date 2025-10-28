@@ -1,0 +1,94 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.swp
+*.swo
+*~
+
+# Model files (large binary files - keep specific ones)
+*.pt
+!best.pt
+!car_or_bike.pt
+*.h5
+*.keras
+*.pkl
+parking_lstm_model.h5
+parking_lstm_model.keras
+parking_scaler.pkl
+exit_counter.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# ChromaDB local storage
+chroma_db_local/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+test_*.py
+*_test.py
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Documentation (if you want to exclude)
+# *.md
+# !README.md
