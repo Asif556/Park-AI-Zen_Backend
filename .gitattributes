@@ -1,0 +1,29 @@
+# Git attributes for better handling of files
+* text=auto
+
+# Python files
+*.py text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Configuration files
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Environment files
+.env.example text eol=lf
+
+# Model files (binary)
+*.pt binary
+*.keras binary
+*.pkl binary
+*.h5 binary
+
+# Documentation
+*.md text eol=lf
+LICENSE text eol=lf
