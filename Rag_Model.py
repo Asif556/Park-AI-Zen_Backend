@@ -15,7 +15,7 @@ def initialize_rag_system():
     from dotenv import load_dotenv
     import uuid
     
-    # Load environment variables
+    
     load_dotenv()
     
     MONGO_URI = os.getenv("MONGODB_URI")
@@ -29,7 +29,7 @@ def initialize_rag_system():
     if not QDRANT_API_KEY:
         raise ValueError("QDRANT_API_KEY not found in environment variables")
     
-    # Initialize Qdrant Cloud client
+    
     qdrant_client = QdrantClient(
         url=QDRANT_URL,
         api_key=QDRANT_API_KEY,
@@ -72,40 +72,34 @@ def initialize_rag_system():
         chunks = text_splitter(doc)
         all_chunks.extend(chunks)
     
-    # Generate embeddings using SentenceTransformer
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(all_chunks, show_progress_bar=True)
     print(f"✅ Generated embeddings for {len(all_chunks)} chunks")
     
-    # Create or recreate Qdrant collection
     collection_name = "parking_records"
     embedding_size = len(embeddings[0])
     
-    # Delete collection if it exists (to ensure fresh data)
     try:
         qdrant_client.delete_collection(collection_name=collection_name)
         print(f"🗑️ Deleted existing collection: {collection_name}")
     except Exception:
-        pass  # Collection doesn't exist yet
+        pass  
     
-    # Create collection with vector configuration
     qdrant_client.create_collection(
         collection_name=collection_name,
         vectors_config=VectorParams(size=embedding_size, distance=Distance.COSINE),
     )
     print(f"✅ Created Qdrant collection: {collection_name}")
     
-    # Upload vectors to Qdrant
     points = []
     for idx, (chunk, embedding) in enumerate(zip(all_chunks, embeddings)):
         point = PointStruct(
-            id=str(uuid.uuid4()),  # Generate unique ID
+            id=str(uuid.uuid4()),  
             vector=embedding.tolist(),
             payload={"text": chunk, "chunk_index": idx}
         )
         points.append(point)
     
-    # Upload in batches for better performance
     batch_size = 100
     for i in range(0, len(points), batch_size):
         batch = points[i:i + batch_size]

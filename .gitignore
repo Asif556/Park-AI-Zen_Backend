@@ -43,17 +43,7 @@ venv.bak/
 *.swo
 *~
 
-# Model files (large binary files - keep specific ones)
-*.pt
-!best.pt
-!car_or_bike.pt
-*.h5
-*.keras
-*.pkl
-parking_lstm_model.h5
-parking_lstm_model.keras
-parking_scaler.pkl
-exit_counter.txt
+
 
 # Jupyter Notebook
 .ipynb_checkpoints
