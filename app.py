@@ -1017,6 +1017,7 @@ def predict_availability():
             
             slot_id = data.get("slot_id", None)
         
+        
         else:
             return jsonify({
                 "success": False,
